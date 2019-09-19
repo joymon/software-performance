@@ -1,8 +1,5 @@
 ﻿cls
-$input = ":\temp\Test large IIS logs\Test Logs"
-$input = "C:\temp\Test large IIS logs\IISLogs"
-$input = "C:\inetpub\logs\LogFiles\W3SVC1"
-$input = "C:\temp\KCw\Aug2019\Load Testing\TOR 9\Run 3 After Web205 restart"
+$input = "<folder which contains .log files>"
 $outExt = ".csv" 
 Get-ChildItem $input -Filter *.log | 
 Foreach-Object {
@@ -28,6 +25,4 @@ Foreach-Object {
     $csv | Export-Csv $outFile -NoTypeInformation
  }
 }
-
-
-
+"completed"
