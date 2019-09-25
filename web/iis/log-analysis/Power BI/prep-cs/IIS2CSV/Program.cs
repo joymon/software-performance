@@ -18,7 +18,7 @@ namespace IIS2CSV
 
             //string FilePath = @"C:\temp\KCw\Sep 2019\IIS Analysis\us-wclclaweb03\W3SVC8989\u_ex190901.log";
             //IIS2CSV(FilePath);
-            string folderPath = @"C:\temp\KCw\Sep 2019\IIS Analysis\us-wclclaweb03\W3SVC8989\";
+            string folderPath = @"<folder which contains .log files>";
             foreach (string filePath in Directory.GetFiles(folderPath, "*.log"))
             {
                 IIS2CSV(filePath);
