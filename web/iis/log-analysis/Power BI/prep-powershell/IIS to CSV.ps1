@@ -3,7 +3,7 @@ $inputPath = "<folder which contains .log files>"
 
 
 ########################### Change only if needed in environment ################################
-$pathToLogParserExe= "C:\Program Files (x86)\Log Parser 2.2\logparser"
+$pathToLogParserExe= "C:\Program Files (x86)\Log Parser 2.2\logparser.exe"
 
 ################################ DO NOT CHANGE ##################################################
 $outExt = ".csv"
@@ -23,11 +23,15 @@ Foreach-Object {
  
     if ($output.Length -eq 0) {
         #There may be missing columns such as sc-bytes, cs-bytes. Rerun without those fields & Add default value 0
+        Write-Information "Converting again"
         $cmd = "SELECT date, time, s-ip, cs-method, cs-uri-stem, cs-uri-query, s-port, cs-username, c-ip, cs(User-Agent) as cs-user-agent, sc-status, sc-substatus, sc-win32-status,0 as sc-bytes,0 as cs-bytes, time-taken INTO '"+$outFile+"' FROM '"+$inFile+"'"
         
         $output =  & $pathToLogParserExe -i:W3C -o:csv $cmd | Out-String
         
-        "Output of rerun is " +$output.Length
+        "Output of rerun is " + $output.Length
+        if($output.Length -eq 0){
+            Write-Error "Not able to convert. Please make sure the IIS log file is W3C format and minimum columns date, time, s-ip, cs-method, cs-uri-stem, cs-uri-query, s-port, cs-username, c-ip, cs(User-Agent), sc-status, sc-substatus, sc-win32-status, time-taken are included"
+        }
     } else {
         "Completed file " + $inFile
     }
