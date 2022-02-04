@@ -1,6 +1,13 @@
 # Analyzing IIS Logs using Power BI
 Tools and Power BI Template for analyzing W3C IIS Logs
 
+# How to run
+
+- Convert the IIS .log files to CSV
+
+- Open the /PBI-Template/IIS Analysis Template for PBI Aug2019.pbit
+- Set the FolderPath and click on load
+
 # Tutorials
 
 - [Power BI Desktop Dashboard for IIS Log Analysis](https://joymonscode.blogspot.com/2019/09/power-bi-desktop-dashboard-for-iis-log.html)
